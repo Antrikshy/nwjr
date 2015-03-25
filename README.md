@@ -24,7 +24,7 @@ nwjr requires a one-time setup. It needs to be fed NW.js executable files that i
 
     nwjr -s /path/to/unpacked/folder
 
-The folder in this argument should be the uncompressed one that now contains the executables. Once nwjr accepts the NW.js files, you are free to delete the folder.
+The folder in this argument should be the one that now contains the executables. Once nwjr accepts the NW.js files, you are free to delete the folder.
 
 Usage
 -----
@@ -38,12 +38,15 @@ Simply pass in the path to your app's folder, which contains the `package.json`.
 Update NW.js
 ------------
 
-You can update to newer versions of NW.js by simply downloading the newer version, unpacking it and running the setup script as outlined above.
+You can update to newer versions of NW.js by simply downloading the newer version, unpacking it and running the setup script again.
 
 Contribute
 ----------
 
+Feel free to contribute to this project. Even the smallest of contributions are appreciated. Things to consider:
 
+- Add error checks for folders not existing with their own error messages.
+- Add automated downloading and unpacking of executables (using supplied URL?).
 
 Donate
 ------
