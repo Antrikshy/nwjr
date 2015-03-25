@@ -1,12 +1,31 @@
 {
   "name": "nwjr",
   "version": "1.0.0",
-  "description": "Run an nw.js app with one simple command",
+  "description": "A simple command line utility to launch NW.js apps during development.",
   "main": "nwjr.js",
   "author": "Antriksh Yadav <antrikshy@gmail.com> (http://antrikshy.com/)",
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^0.16.5",
     "minimist": "^1.1.1"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "http://github.com/Antrikshy/nwjr.git"
+  },
+  "bugs": {
+    "url": "http://github.com/Antrikshy/nwjr/issues"
+  },
+  "keywords": [
+    "cli",
+    "nw.js",
+    "node-webkit",
+    "utilities",
+    "dev",
+    "testing"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "nwjr": "nwjr.js"
   }
 }
