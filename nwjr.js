@@ -20,9 +20,19 @@ if (argv['s']) {
         process.exit(-1);
     }
 
-    if (fs.existsSync(path.resolve(argv['s'], LINUX_EXECUTABLE)) || 
-        fs.existsSync(path.resolve(argv['s'], MAC_EXECUTABLE)) ||
-        fs.existsSync(path.resolve(argv['s'], WIN_EXECUTABLE))) {
+    try {
+        switch (process.platform) {
+            case "darwin":
+            fs.statSync(path.resolve(argv['s'], MAC_EXECUTABLE)).isFile();
+            break;
+            case "linux":
+            fs.statSync(path.resolve(argv['s'], LINUX_EXECUTABLE)).isFile();
+            break;
+            case "win32":
+            fs.statSync(path.resolve(argv['s'], WIN_EXECUTABLE)).isFile();
+            break;
+        }
+
         console.log("\nCopying NW.js executable files...");
 
         fs.removeSync('executable');
@@ -32,24 +42,30 @@ if (argv['s']) {
 
         process.exit();
     }
-
-    else {
-        console.log("Either that directory does not exist, or it's missing appropriate NW.js files.\n");
-        process.exit(1);
+    catch(err) {
+        if (err.code === "ENOENT") {
+            console.log("Either that directory does not exist, or it's missing appropriate NW.js files.\n");
+            process.exit(1);
+        }
     }
 }
 
 if (argv['_'].length == 1) {
-    // TODO: Find better way to check if folder exists
-    if (!fs.existsSync(path.resolve('.', 'executable'))) {
-        console.log("NW.js executables not found. Run setup using -s first.\n");
-        process.exit(-1);
+    try {
+        fs.statSync(path.resolve('.', 'executable')).isDirectory()
+    }
+    catch(err) {
+        if (err.code === "ENOENT") {
+            console.log("NW.js executables not found. Run setup using -s first.\n");
+            process.exit(-1);
+        }
     }
 
     var pathToApp = path.resolve(argv['_'][0]);
 
-    if (fs.existsSync(path.resolve(pathToApp, 'package.json'))) {
-        console.log("Attempting to launch NW.js app...\n");
+    try { 
+        fs.statSync(path.resolve(pathToApp, 'package.json')).isFile()
+        console.log("Launching NW.js app...\n");
 
         if (process.platform == "darwin") {
             var nwjsExecLocation = path.resolve('.', 'executable', MAC_EXECUTABLE + '/Contents/MacOS/nwjs');
@@ -62,10 +78,11 @@ if (argv['_'].length == 1) {
             process.exit();
         }
     }
-
-    else {
-        console.log("Directory does not exist or package.json not found. Are you sure that's an NW.js app?\n");
-        process.exit(1);
+    catch(err) {
+        if (err.code === "ENOENT") {
+            console.log("Directory does not exist or package.json not found. Are you sure that's an NW.js app?\n");
+            process.exit(1);
+        }
     }
 }
 
