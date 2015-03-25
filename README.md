@@ -45,7 +45,7 @@ Contribute
 
 Feel free to contribute to this project. Even the smallest of contributions are appreciated. Things to consider:
 
-- Add error checks for folders not existing with their own error messages.
+- Make error messages more verbose (for ex. "Either that directory does not exist, or it's missing appropriate NW.js files." can be split into two error checks).
 - Add automated downloading and unpacking of executables (using supplied URL?).
 
 Donate
