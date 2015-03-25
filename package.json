@@ -1,0 +1,12 @@
+{
+  "name": "nwjr",
+  "version": "1.0.0",
+  "description": "Run an nw.js app with one simple command",
+  "main": "nwjr.js",
+  "author": "Antriksh Yadav <antrikshy@gmail.com> (http://antrikshy.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^0.16.5",
+    "minimist": "^1.1.1"
+  }
+}
