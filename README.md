@@ -18,7 +18,7 @@ nwjr is an alternative to downloading NW.js and running it manually.
 
 Install using
 
-    npm install nwjr
+    npm install nwjr -g
 
 nwjr requires a one-time setup. It needs to be fed NW.js executable files that it will then use to run your app. Head over to [nwjs.io](http://nwjs.io) and download NW.js for your platform. Unpack it (from the .zip or .tar.gz that it comes in) and run the setup command
 
@@ -45,7 +45,7 @@ Contribute
 
 Feel free to contribute to this project. Even the smallest of contributions are appreciated. Things to consider:
 
-- Add error checks for folders not existing with their own error messages.
+- Make error messages more verbose (for ex. "Either that directory does not exist, or it's missing appropriate NW.js files." can be split into two error checks).
 - Add automated downloading and unpacking of executables (using supplied URL?).
 
 Donate
